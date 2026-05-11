@@ -16,5 +16,6 @@
    open CSI-Pro/dist/CSI-Pro-v2.3.0.html
 
 System Requirements
+
 • Chrome 90+, Firefox 88+, Safari 14+, Edge 90+
 • No server, no installation, no account required
