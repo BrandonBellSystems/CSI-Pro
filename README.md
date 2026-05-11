@@ -1,3 +1,5 @@
+# CSI Pro — Customer Success Intelligence
+
 [![Version](https://img.shields.io/badge/version-2.3.0-blue?style=flat-square&labelColor=0f1115)](https://github.com/[YOUR_GITHUB_USERNAME]/CSI-Pro/releases)
 [![License](https://img.shields.io/badge/license-Proprietary-orange?style=flat-square&labelColor=0f1115)](LICENSE)
 [![Build](https://img.shields.io/badge/build-stable-22c55e?style=flat-square&labelColor=0f1115)](https://github.com/[YOUR_GITHUB_USERNAME]/CSI-Pro/actions)
