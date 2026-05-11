@@ -10,6 +10,7 @@
 > **A sovereign, zero-server intelligence platform for Customer Success Managers to predict renewals, generate QBRs, and triage escalations — entirely in-browser.**
 > 
 **[🌐 Official Site](https://customersuccessintelligence.com/)** _(Free to Own + Pro Upgrade)_ ·
+
 **[▶️ Try It Now](https://customersuccessintelligence.com/free/CSI-Pro-v2.3.0.html)** ·
 **[💎 Get Pro — $29](https://brandonbellsystems.gumroad.com/l/csi-pro?wanted=true)** ·
 **[📖 Architecture Deep Dive](docs/architecture.md)**
