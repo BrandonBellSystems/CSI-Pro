@@ -77,3 +77,121 @@ The "hard shell" of the application. All data entering persistence is intercepte
 - Rate limiting: 5 validation attempts per hour
 - Tamper detection: hash verification prevents license key modification
  
+### Tier 2: Core Logic Engines (Layers 05–09)
+
+**Layer 07 — Sentiment Lexicon**
+A rule-based linguistic analysis engine with 5,000+ scored terms. Provides immediate, offline sentiment scoring without requiring any AI provider.
+
+**Layer 09 — Scoring Engine**
+The heart of the system. A multi-variable mathematical model:
+
+Renewal Probability = f(usage_trend, support_volume, sentiment_score,
+renewal_proximity, contract_value, engagement_depth)
+
+
+Each factor has explicit weights derived from CS domain research. See [research/scoring-logic.md](../research/scoring-logic.md) for the derivation.
+
+### Tier 3: Content Generators (Layers 10–12)
+
+**Layer 10 — Account Model**
+Immutable data structure with validation rules, default values, and change tracking. Prevents state corruption at the data boundary.
+
+**Layer 11 — Account Store**
+Centralized state management with:
+- Auto-save every 3 seconds during input
+- Snapshot system for manual saves (`Ctrl+S`)
+- Undo/redo stack for form interactions
+
+**Layer 12 — Generators**
+Three template-driven engines:
+- **QBR Generator** — Value Realized / Current Risks / Next Quarter Focus
+- **Triage Brief** — What Happened / Why It Matters / Recommended Action
+- **Prescriptive Advisor** — Three recovery paths + hybrid optimal solution
+
+Each produces markdown-ready output. In Pro mode, AI enhances the template with contextual language.
+
+### Tier 4: AI & Research Intelligence (Layers 13–17)
+
+**Layer 13 — AI Provider Client**
+A polymorphic interface supporting 6 providers with a unified API:
+- OpenRouter, Anthropic, Google Gemini, Ollama, OpenAI, Generic
+
+Features: automatic provider fallback, exponential backoff retry, request cancellation, connection testing.
+
+**Layer 14 — Chat Session Manager**
+Optimizes token usage by compressing account context before transmission. Maintains session history while staying within context windows.
+
+**Layer 15 — Account Intelligence (Pro)**
+Implements a **fallback chain** to ensure the system never returns a null result:
+
+Perplexity (5/day) → Brave Search (2,000/mo) → Wikipedia (unlimited)
+
+
+**Layer 16 — Document Vault (Pro)**
+IndexedDB-backed storage for PDF, CSV, and TXT files. Parsed locally and content injected into AI context window.
+
+**Layer 17 — Unified AccountContext (Pro)**
+Aggregation layer: merges local account data, research intelligence, and document context into a single context object.
+
+### Tier 5: UI & Systems (Layers 18–20)
+
+**Layer 18 — UI Engine**
+Custom component renderer without a virtual DOM. 40+ specialized methods. Centralized event pipeline with keyboard shortcut system.
+
+**Layer 19 — Self-Test Suite**
+80+ automated tests activated via `?test=true`:
+- Encryption/decryption cycles
+- Scoring algorithm accuracy
+- API connection handling
+- UI component rendering
+- Accessibility compliance
+
+**Layer 20 — Bootstrap**
+Manages application lifecycle:
+- Demo-first launch (6 pre-built scenarios)
+- Pre-generated outputs for immediate value
+- Milestone system tracking user progression
+
+---
+
+## 4. Engineering Trade-offs
+
+### 4.1 Single-File vs. Build Tools
+
+**Decision:** Zero bundler. Zero npm. Single HTML file.
+
+**Rationale:** Traditional build tools create dependency trees that are difficult to audit. By using a structured internal component system, we achieve instant auditability and zero deployment friction.
+
+**Cost:** File size (~400KB). No tree-shaking. No HMR.
+
+### 4.2 Deterministic Scoring vs. Pure AI
+
+**Decision:** Rule-based scoring as baseline, AI as enhancer.
+
+**Rationale:** LLMs hallucinate. A CSM presenting a "78% renewal probability" to leadership needs that number to be reproducible. The deterministic engine provides mathematical certainty; the AI provides richer language.
+
+### 4.3 Local Encryption vs. Server-Side E2EE
+
+**Decision:** Client-side AES-256-GCM. No server.
+
+**Rationale:** True E2EE requires a server to manage key exchange. Our Sovereign model eliminates the server entirely — no server to breach, no key management infrastructure to compromise. The trade-off is no cross-device sync without manual export/import. When Cloud Sync launches, it will be an optional layer, not a replacement.
+
+### 4.4 IndexedDB vs. localStorage for Documents
+
+**Decision:** IndexedDB for binary/large data, localStorage for settings.
+
+**Rationale:** localStorage has a ~5MB limit and only stores strings. IndexedDB handles binary blobs efficiently. Settings are small JSON objects that fit localStorage naturally.
+
+---
+
+## 5. Threat Model
+
+| Threat | Mitigation | Limitation |
+|:---|:---|:---|
+| Data inspected in localStorage | AES-256-GCM encryption | Does not protect against malware with memory access |
+| XSS via AI-generated output | HTML sanitization before DOM injection | Prompt injection could produce misleading content |
+| License key theft | Device binding + rate limiting | Cannot prevent key sharing entirely |
+| Cold boot memory dump | API keys cleared from memory on tab close | Brief exposure window while tab is active |
+| Browser data cleared | Export/import backup system | User must proactively backup |
+
+**Honest assessment:** Local encryption protects against accidental data exposure and casual inspection. It does not protect against a determined attacker with root access. This is a fundamental constraint of client-side cryptography.
