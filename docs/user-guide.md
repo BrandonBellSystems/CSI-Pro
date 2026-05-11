@@ -1,6 +1,6 @@
 # CSI Pro User Guide
 
-> **Version:** 2.3.0 Â· Complete documentation for all features
+> **Version:** 2.3.0 · Complete documentation for all features
 
 ---
 
@@ -8,9 +8,9 @@
 
 ### Launch CSI Pro
 
-1. **Option A â€” Download:** Save from the [Official Site](https://customersuccessintelligence.com/) and double-click to open
-2. **Option B â€” Direct:** Click **[Try It Now](https://customersuccessintelligence.com/free/CSI-Pro-v2.3.0.html)** â€” loads instantly in browser
-3. **Option C â€” Clone:**
+1. **Option A — Download:** Save from the [Official Site](https://customersuccessintelligence.com/) and double-click to open
+2. **Option B — Direct:** Click **[Try It Now](https://customersuccessintelligence.com/free/CSI-Pro-v2.3.0.html)** — loads instantly in browser
+3. **Option C — Clone:**
    ```bash
    git clone https://github.com/BrandonBellSystems/CSI-Pro.git
    open CSI-Pro/dist/CSI-Pro-v2.3.0.html
@@ -42,7 +42,7 @@ Click **Analyze** (or `Ctrl+Enter`) to generate the score.
 
 ### QBR Draft
 - **Sections:** Value Realized, Current Risks, Next Quarter Focus
-- **Quick Actions:** Copy Brief Â· Email Draft Â· Collapse
+- **Quick Actions:** Copy Brief · Email Draft · Collapse
 
 ### Triage Brief
 - **Sections:** What Happened, Why It Matters, Recommended Action
@@ -55,8 +55,8 @@ Click **Analyze** (or `Ctrl+Enter`) to generate the score.
 ## 4. AI Configuration (Pro)
 
 1. Go to Settings (`Ctrl+K`)
-2. Select provider â€” [OpenRouter](https://openrouter.ai/keys) is free
-3. Paste API key â€” encrypted locally
+2. Select provider — [OpenRouter](https://openrouter.ai/keys) is free
+3. Paste API key — encrypted locally
 4. Click **Test Connection**
 
 No API key? Use the **Prompt Booster** to copy a pre-filled prompt into ChatGPT/Claude/Gemini.
@@ -65,7 +65,7 @@ No API key? Use the **Prompt Booster** to copy a pre-filled prompt into ChatGPT/
 
 ## 5. Account Intelligence (Pro)
 
-**Fallback Chain:** Perplexity (5/day) â†’ Brave Search (2,000/mo) â†’ Wikipedia (unlimited)
+**Fallback Chain:** Perplexity (5/day) → Brave Search (2,000/mo) → Wikipedia (unlimited)
 
 **Free Trial:** 3 searches without purchase.
 
@@ -81,10 +81,10 @@ Upload PDF, CSV, or TXT files. Content is parsed locally and injected into AI co
 
 - **Auto-Save:** Every 3 seconds while typing
 - **Manual Snapshots:** `Ctrl+S`
-- **Export:** Settings â†’ Data Management â†’ Export ALL Data (encrypted JSON)
-- **Import:** Settings â†’ Data Management â†’ Import Data
+- **Export:** Settings → Data Management → Export ALL Data (encrypted JSON)
+- **Import:** Settings → Data Management → Import Data
 
-> âš ï¸ Clearing browser data removes all CSI Pro data. Export a backup first.
+> ⚠️ Clearing browser data removes all CSI Pro data. Export a backup first.
 
 ---
 
