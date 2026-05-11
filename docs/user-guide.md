@@ -18,4 +18,5 @@
 System Requirements
 
 • Chrome 90+, Firefox 88+, Safari 14+, Edge 90+
+
 • No server, no installation, no account required
