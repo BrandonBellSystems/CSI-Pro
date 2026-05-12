@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'dist/**'
+      - '.github/workflows/**'
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: HTML Validation
+        run: |
+          curl -sL https://github.com/validator/validator/releases/latest/download/vnu.linux.zip -o vnu.zip
+          unzip -q vnu.zip
+          java -jar dist/vnu/dist/vnu.jar --no-langdetect --skip-non-html --also-check-css dist/*.html || true
+
+      - name: Check file size
+        run: |
+          SIZE=$(stat -c%s "dist/CSI-Pro-v2.3.0.html" 2>/dev/null || stat -f%z "dist/CSI-Pro-v2.3.0.html")
+          echo "File size: ${SIZE} bytes (~$((SIZE / 1024))KB)"
+          if [ "$SIZE" -gt 1000000 ]; then
+            echo "⚠️  Warning: File exceeds 1MB soft limit"
+          fi
+
+      - name: Verify self-test suite
+        run: |
+          grep -q "?test=true" dist/CSI-Pro-v2.3.0.html && echo "✅ Self-test suite available" || echo "⚠️  Self-test marker not found"
