@@ -1,0 +1,31 @@
+# CSI-Pro .gitignore
+
+# OS
+.DS_Store
+Thumbs.db
+*.tmp
+*.temp
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Local backups
+local_backup_*.json
+test_backup_*.json
+
+# Secrets (never commit)
+*license.txt*
+*api_keys.txt*
+.env
+.env.*
+
+# Node (if CI tooling added later)
+node_modules/
+package-lock.json
+
+# Coverage
+coverage/
+.nyc_output/
